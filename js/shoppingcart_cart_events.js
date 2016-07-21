@@ -78,25 +78,42 @@
         var currentProduct = [];
         var clickedId = jQuery(this).data('id');
         
-        button.attr('disabled', 'disabled');
+        // button.attr('disabled', 'disabled');
 
         if (ShoppingCart.currentPageIsProducts) {
-            currentProduct = ShoppingCart.currentProducts.filter(function(item) {
-                return item.id == clickedId;
-            });
+            currentProduct = ShoppingCart.currentProducts.filter(filterById);
             ShoppingCart.currentProduct = currentProduct[0];
         }
+
+        function filterById(item) {
+            return item.id == clickedId;
+        }
         
+        // ******* CUSTOM ******* //
+        // Only change state and html of button if product was added.
+        product = jQuery.extend(true, {}, ShoppingCart.currentProduct);
+        
+        if (ShoppingCart.addProduct(product, quantity) !== false) {
+            button.attr('disabled', 'disabled');
+            button.html(window.PLUGIN_SHOPPINGCART.translations.PRODUCT_ADDED_TO_CART);
+
+            setTimeout(function() {
+                button.html(window.PLUGIN_SHOPPINGCART.translations.ADD_TO_CART);
+                button.attr('disabled', null);
+            }, 2000);
+        }
+        // ******* END CUSTOM ******* //
+
         // Deep copy
         // var product = jQuery.extend(true, {}, ShoppingCart.currentProduct);
-        product = jQuery.extend(true, {}, ShoppingCart.currentProduct);
-        ShoppingCart.addProduct(product, quantity);
-        button.html(window.PLUGIN_SHOPPINGCART.translations.PRODUCT_ADDED_TO_CART);
+        // product = jQuery.extend(true, {}, ShoppingCart.currentProduct);
+        // ShoppingCart.addProduct(product, quantity);
+        // button.html(window.PLUGIN_SHOPPINGCART.translations.PRODUCT_ADDED_TO_CART);
 
-        setTimeout(function() {
-            button.html(window.PLUGIN_SHOPPINGCART.translations.ADD_TO_CART);
-            button.attr('disabled', null);
-        }, 2000);
+        // setTimeout(function() {
+        //     button.html(window.PLUGIN_SHOPPINGCART.translations.ADD_TO_CART);
+        //     button.attr('disabled', null);
+        // }, 2000);
     });
 
     /***********************************************************/

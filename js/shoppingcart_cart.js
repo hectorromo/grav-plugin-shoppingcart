@@ -104,7 +104,11 @@
         var onBeforeAddProductToCart;
         $(document).trigger(onBeforeAddProductToCart = $.Event('onBeforeAddProductToCart', { product: product }));
         if (onBeforeAddProductToCart.result === false) {
-            return;
+            // ******* CUSTOM ******* // 
+            // return false for validation on event
+            return false;
+            // ******* END CUSTOM ******* // 
+            // return;
         }
 
         var existingProducts = jQuery(ShoppingCart.items).filter(function(index, item) { if (product.title == item.product.title) return true; }).toArray();
