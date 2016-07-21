@@ -14,6 +14,16 @@
     /***********************************************************/
     jQuery(document).on('submit', 'form[name=checkout]', function(event) {
         event.preventDefault();
+
+        // ******* CUSTOM ******* //
+        // Prevents multiple submits of checkout form
+        var submitButton =  $(this).find('[type=submit]');
+        submitButton.attr('disabled', true);
+        setTimeout(function() {
+            submitButton.attr('disabled', false);
+        }, 2000);
+        // ******* END CUSTOM ******* //
+        
         ShoppingCart.processCheckoutFormSubmission();
     });
 
