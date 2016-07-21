@@ -404,6 +404,11 @@
         var thead = $cart.find('thead');
         var tbody = $cart.find('tbody');
 
+        // ******* CUSTOM ******* // 
+        // trigger for updating minicart in header 
+        $(ShoppingCart).trigger('onCartUpdate');
+        // ******* END CUSTOM ******* //
+
         thead.html('');
         tbody.html('');
 
