@@ -78,11 +78,8 @@
         var currentProduct = [];
         var clickedId = jQuery(this).data('id');
         
-<<<<<<< HEAD
-=======
         button.attr('disabled', 'disabled');
 
->>>>>>> flaviocopes/develop
         if (ShoppingCart.currentPageIsProducts) {
             currentProduct = ShoppingCart.currentProducts.filter(function(item) {
                 return item.id == clickedId;
@@ -93,18 +90,6 @@
         // Deep copy
         // var product = jQuery.extend(true, {}, ShoppingCart.currentProduct);
         product = jQuery.extend(true, {}, ShoppingCart.currentProduct);
-<<<<<<< HEAD
-
-        if (ShoppingCart.addProduct(product, quantity) !== false) {
-            button.attr('disabled', 'disabled');
-            button.html(window.PLUGIN_SHOPPINGCART.translations.PRODUCT_ADDED_TO_CART);
-
-            setTimeout(function() {
-                button.html(window.PLUGIN_SHOPPINGCART.translations.ADD_TO_CART);
-                button.attr('disabled', null);
-            }, 1500);
-        }
-=======
         ShoppingCart.addProduct(product, quantity);
         button.html(window.PLUGIN_SHOPPINGCART.translations.PRODUCT_ADDED_TO_CART);
 
@@ -112,7 +97,6 @@
             button.html(window.PLUGIN_SHOPPINGCART.translations.ADD_TO_CART);
             button.attr('disabled', null);
         }, 2000);
->>>>>>> flaviocopes/develop
     });
 
     /***********************************************************/
